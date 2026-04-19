@@ -22,38 +22,9 @@ fi
 
 # 2. Package AI session history (non-fatal)
 echo "--- Packaging AI session history ---"
-
-# Package Cline (VS Code extension) session logs
-CLINE_TASKS_DIR="${HOME}/Library/Application Support/Code/User/globalStorage/asbx.amzn-cline/tasks"
-if [[ -d "$CLINE_TASKS_DIR" ]]; then
-    mkdir -p ai-session-logs
-    # Find the most recent task folder and copy conversation logs
-    for task_dir in "$CLINE_TASKS_DIR"/*/; do
-        if [[ -f "${task_dir}api_conversation_history.json" ]]; then
-            cp "${task_dir}api_conversation_history.json" ai-session-logs/
-            echo "  Packaged: api_conversation_history.json"
-        fi
-        if [[ -f "${task_dir}ui_messages.json" ]]; then
-            cp "${task_dir}ui_messages.json" ai-session-logs/
-            echo "  Packaged: ui_messages.json"
-        fi
-    done
-    # Format JSON files for readability
-    if command -v jq &>/dev/null; then
-        for f in ai-session-logs/*.json; do
-            jq '.' "$f" > "${f}.tmp" && mv "${f}.tmp" "$f" 2>/dev/null || true
-        done
-        echo "  Formatted JSON files with jq"
-    fi
-    git add ai-session-logs/ 2>/dev/null || true
-    echo "  AI session logs packaged successfully"
-else
-    echo "  No Cline session logs found (checked $CLINE_TASKS_DIR)"
-fi
-
-# Fallback: try original dist script if it exists
 if [[ -x "./dist/package-all-sessions.sh" ]]; then
     ./dist/package-all-sessions.sh || echo "Warning: session packaging had errors (continuing anyway)"
+    # Stage any packaged sessions
     git add session-packages/ 2>/dev/null || true
 fi
 echo ""
