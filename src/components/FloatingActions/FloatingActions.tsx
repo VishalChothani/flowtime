@@ -6,7 +6,7 @@ export function FloatingActions() {
     >
       <button
         aria-label="Theme"
-        className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl bg-gray-800/90 text-indigo-400 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90 sm:h-14 sm:w-14 dark:bg-gray-800/90 dark:hover:bg-gray-700/90"
+        className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl bg-gray-800/90 text-gray-300 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90 sm:h-14 sm:w-14 dark:bg-gray-800/90 dark:hover:bg-gray-700/90"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
