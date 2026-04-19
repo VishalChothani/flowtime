@@ -6,9 +6,20 @@
 
 ---
 
+## Raw Conversation Logs
+
+The complete, unedited AI conversation logs are in the `ai-session-logs/` directory:
+
+- **`ai-session-logs/api_conversation_history.json`** (2.3 MB) — Full API-level conversation between the Cline extension and Claude, including every prompt, response, tool call, and result
+- **`ai-session-logs/ui_messages.json`** (3.1 MB) — UI-level message history as displayed in the Cline sidebar
+
+These contain the exact questions asked and actual responses — every file read, write, command execution, and decision point.
+
+---
+
 ## Session Overview
 
-This document captures the AI-assisted development session for building Flowtime, a focus timer web app. All code was written through iterative collaboration with Claude via the Cline VS Code extension.
+This document provides a human-readable summary of the AI-assisted development session. For the exact conversation, see the JSON logs above.
 
 ---
 
