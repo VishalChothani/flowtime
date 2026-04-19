@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { Header } from '../components/Header';
 import { Timer } from '../components/Timer';
 
@@ -17,15 +16,6 @@ export function Home() {
           </p>
 
           <Timer />
-
-          <nav aria-label="Page navigation" className="mt-8">
-            <Link
-              to="/about"
-              className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
-            >
-              About →
-            </Link>
-          </nav>
         </article>
       </main>
     </div>
