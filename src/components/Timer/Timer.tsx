@@ -1,16 +1,18 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useTimerStore,
   formatTime,
   parseTime,
 } from '../../store/useTimerStore';
+import { EditTimerIcon, ResetIcon } from '../icons';
 
 export function Timer() {
   const { t } = useTranslation();
   const { remainingSeconds, status, start, pause, reset, setDuration } =
     useTimerStore();
 
+  const [isEditing, setIsEditing] = useState(false);
   const minutesRef = useRef<HTMLInputElement>(null);
   const secondsRef = useRef<HTMLInputElement>(null);
 
@@ -22,16 +24,7 @@ export function Timer() {
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
 
-  const statusLabel = isRunning
-    ? t('timer.focusTime')
-    : isPaused
-      ? t('timer.paused')
-      : isFinished
-        ? t('timer.timesUp')
-        : t('timer.setYourTimer');
-
   const handleTimeChange = () => {
-    if (!isIdle) return;
     const mm = minutesRef.current?.value ?? '0';
     const ss = secondsRef.current?.value ?? '0';
     const totalSeconds = parseTime(mm, ss);
@@ -39,26 +32,33 @@ export function Timer() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && isIdle && remainingSeconds >= 10) {
+    if (e.key === 'Enter' && remainingSeconds >= 10) {
+      setIsEditing(false);
       start();
     }
+    if (e.key === 'Escape') {
+      setIsEditing(false);
+    }
+  };
+
+  const handleEditClick = () => {
+    if (!isIdle) return;
+    setIsEditing(true);
+    setTimeout(() => minutesRef.current?.focus(), 50);
+  };
+
+  const handleEditDone = () => {
+    setIsEditing(false);
   };
 
   return (
     <section
       aria-label={t('timer.countdownTimer')}
-      className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-lg sm:p-8 dark:border-gray-700 dark:bg-gray-800"
+      className="mx-auto w-full max-w-2xl px-4"
     >
       {/* Timer Display */}
-      <div className="mb-6 text-center">
-        <p
-          className="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400"
-          aria-live="polite"
-        >
-          {statusLabel}
-        </p>
-
-        {isIdle ? (
+      <div className="mb-8 text-center">
+        {isIdle && isEditing ? (
           <fieldset className="border-none p-0">
             <legend className="sr-only">
               {t('timer.setCountdownDuration')}
@@ -76,11 +76,12 @@ export function Timer() {
                 value={String(minutes).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-24 rounded-lg border border-gray-300 bg-gray-50 p-3 text-center font-mono text-5xl font-bold text-indigo-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-6xl dark:border-gray-600 dark:bg-gray-700 dark:text-indigo-400"
+                onBlur={handleEditDone}
+                className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
                 aria-label={t('timer.minutes')}
               />
               <span
-                className="text-5xl font-bold text-gray-400 sm:text-6xl dark:text-gray-500"
+                className="text-8xl font-extrabold text-white/60 sm:text-9xl"
                 aria-hidden="true"
               >
                 :
@@ -97,10 +98,14 @@ export function Timer() {
                 value={String(seconds).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-24 rounded-lg border border-gray-300 bg-gray-50 p-3 text-center font-mono text-5xl font-bold text-indigo-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-6xl dark:border-gray-600 dark:bg-gray-700 dark:text-indigo-400"
+                onBlur={handleEditDone}
+                className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
                 aria-label={t('timer.seconds')}
               />
             </div>
+            <p className="mt-3 text-sm text-white/50">
+              {t('timer.minMax')}
+            </p>
           </fieldset>
         ) : (
           <output
@@ -109,7 +114,7 @@ export function Timer() {
             aria-label={t('timer.timeRemaining', {
               time: formatTime(remainingSeconds),
             })}
-            className="block font-mono text-6xl font-bold text-indigo-600 sm:text-7xl dark:text-indigo-400"
+            className="block font-mono text-[10rem] leading-none font-extrabold text-white drop-shadow-lg sm:text-[14rem]"
           >
             <time dateTime={`PT${minutes}M${seconds}S`}>
               {formatTime(remainingSeconds)}
@@ -117,58 +122,86 @@ export function Timer() {
           </output>
         )}
 
-        <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
-          {isIdle ? t('timer.minMax') : '\u00A0'}
-        </p>
+        {/* Status label */}
+        {!isEditing && (
+          <p
+            className="mt-2 text-lg font-medium text-white/60"
+            aria-live="polite"
+          >
+            {isRunning
+              ? t('timer.focusTime')
+              : isPaused
+                ? t('timer.paused')
+                : isFinished
+                  ? t('timer.timesUp')
+                  : ''}
+          </p>
+        )}
       </div>
 
       {/* Controls */}
-      <nav aria-label={t('timer.timerControls')} className="flex gap-3">
-        {isIdle && (
+      <nav
+        aria-label={t('timer.timerControls')}
+        className="flex items-center justify-center gap-4"
+      >
+        {isIdle && !isEditing && (
           <button
             onClick={start}
             disabled={remainingSeconds < 10}
             aria-label={t('timer.startCountdown')}
-            className="flex-1 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="cursor-pointer rounded-full bg-indigo-600 px-10 py-3.5 text-lg font-bold text-white shadow-lg transition-all hover:bg-indigo-500 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t('timer.start')}
           </button>
         )}
 
         {isRunning && (
-          <>
-            <button
-              onClick={pause}
-              aria-label={t('timer.pauseCountdown')}
-              className="flex-1 cursor-pointer rounded-lg bg-amber-500 px-4 py-2.5 font-medium text-white transition-colors hover:bg-amber-600"
-            >
-              {t('timer.pause')}
-            </button>
-            <button
-              onClick={reset}
-              aria-label={t('timer.resetCountdown')}
-              className="flex-1 cursor-pointer rounded-lg bg-gray-200 px-4 py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-            >
-              {t('timer.reset')}
-            </button>
-          </>
+          <button
+            onClick={pause}
+            aria-label={t('timer.pauseCountdown')}
+            className="cursor-pointer rounded-full bg-amber-500 px-10 py-3.5 text-lg font-bold text-white shadow-lg transition-all hover:bg-amber-400 hover:shadow-xl"
+          >
+            {t('timer.pause')}
+          </button>
         )}
 
         {isPaused && (
+          <button
+            onClick={start}
+            aria-label={t('timer.resumeCountdown')}
+            className="cursor-pointer rounded-full bg-indigo-600 px-10 py-3.5 text-lg font-bold text-white shadow-lg transition-all hover:bg-indigo-500 hover:shadow-xl"
+          >
+            {t('timer.resume')}
+          </button>
+        )}
+
+        {/* Reset button */}
+        {(isRunning || isPaused) && (
+          <button
+            onClick={reset}
+            aria-label={t('timer.resetCountdown')}
+            className="cursor-pointer rounded-full p-3 text-white/70 transition-colors hover:text-white"
+          >
+            <ResetIcon className="h-7 w-7" />
+          </button>
+        )}
+
+        {/* Edit button — only when idle and not already editing */}
+        {isIdle && !isEditing && (
           <>
             <button
-              onClick={start}
-              aria-label={t('timer.resumeCountdown')}
-              className="flex-1 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-indigo-700"
+              onClick={() => reset()}
+              aria-label={t('timer.resetCountdown')}
+              className="cursor-pointer rounded-full p-3 text-white/70 transition-colors hover:text-white"
             >
-              {t('timer.resume')}
+              <ResetIcon className="h-7 w-7" />
             </button>
             <button
-              onClick={reset}
-              aria-label={t('timer.resetCountdown')}
-              className="flex-1 cursor-pointer rounded-lg bg-gray-200 px-4 py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+              onClick={handleEditClick}
+              aria-label={t('timer.setCountdownDuration')}
+              className="cursor-pointer rounded-full p-3 text-white/70 transition-colors hover:text-white"
             >
-              {t('timer.reset')}
+              <EditTimerIcon className="h-7 w-7" />
             </button>
           </>
         )}
