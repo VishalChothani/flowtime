@@ -33,6 +33,13 @@
     "music": "Music",
     "edit": "Edit"
   },
+  "theme": {
+    "title": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "gradient": "Gradient",
+    "shuffle": "Shuffle gradient"
+  },
   "notes": {
     "title": "Quick Notes",
     "placeholder": "Write your notes here...",

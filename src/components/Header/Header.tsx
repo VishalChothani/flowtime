@@ -3,14 +3,29 @@ import { useTranslation } from 'react-i18next';
 import { LogoIcon } from '../icons';
 import { LanguageSelector } from '../LanguageSelector';
 
+interface ThemeClasses {
+  bg: string;
+  heading: string;
+  subtitle: string;
+  quote: string;
+}
+
+interface HeaderProps {
+  themeClasses?: ThemeClasses;
+}
+
 function getRandomQuote(quotes: string[]) {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-export function Header() {
+export function Header({ themeClasses }: HeaderProps) {
   const { t } = useTranslation();
   const quotes = t('quotes', { returnObjects: true }) as string[];
   const quote = useMemo(() => getRandomQuote(quotes), [quotes]);
+
+  const quoteColor =
+    themeClasses?.quote ??
+    'text-gray-500 dark:text-gray-400';
 
   return (
     <header
@@ -27,7 +42,7 @@ export function Header() {
 
         <div className="flex items-center gap-3 sm:gap-4">
           <blockquote
-            className="hidden max-w-xs text-right text-xs italic text-gray-500 sm:block sm:text-sm dark:text-gray-400"
+            className={`hidden max-w-xs text-right text-xs italic sm:block sm:text-sm ${quoteColor}`}
             aria-label="Motivational quote"
           >
             <p>&ldquo;{quote}&rdquo;</p>

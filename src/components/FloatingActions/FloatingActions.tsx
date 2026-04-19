@@ -2,13 +2,20 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MusicIcon, PaletteIcon, PencilIcon } from '../icons';
 import { NotesPanel } from '../NotesPanel';
+import { ThemeSelector } from '../ThemeSelector';
 
 export function FloatingActions() {
   const { t } = useTranslation();
   const [isNotesOpen, setIsNotesOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
   return (
     <>
+      <ThemeSelector
+        isOpen={isThemeOpen}
+        onClose={() => setIsThemeOpen(false)}
+      />
+
       <NotesPanel
         isOpen={isNotesOpen}
         onClose={() => setIsNotesOpen(false)}
@@ -19,8 +26,17 @@ export function FloatingActions() {
         className="fixed right-4 bottom-6 z-50 flex gap-3 sm:right-6 sm:bottom-8 sm:gap-4"
       >
         <button
+          onClick={() => {
+            setIsThemeOpen(!isThemeOpen);
+            setIsNotesOpen(false);
+          }}
           aria-label={t('actions.theme')}
-          className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl bg-gray-800/90 text-gray-300 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90 sm:h-14 sm:w-14 dark:bg-gray-800/90 dark:hover:bg-gray-700/90"
+          aria-expanded={isThemeOpen}
+          className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl shadow-lg backdrop-blur-sm transition-all hover:scale-110 sm:h-14 sm:w-14 ${
+            isThemeOpen
+              ? 'bg-indigo-600 text-white hover:bg-indigo-500'
+              : 'bg-gray-800/90 text-gray-300 hover:bg-gray-700/90 dark:bg-gray-800/90 dark:hover:bg-gray-700/90'
+          }`}
         >
           <PaletteIcon className="h-6 w-6 sm:h-7 sm:w-7" />
         </button>
@@ -33,7 +49,10 @@ export function FloatingActions() {
         </button>
 
         <button
-          onClick={() => setIsNotesOpen(!isNotesOpen)}
+          onClick={() => {
+            setIsNotesOpen(!isNotesOpen);
+            setIsThemeOpen(false);
+          }}
           aria-label={t('actions.edit')}
           aria-expanded={isNotesOpen}
           className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl shadow-lg backdrop-blur-sm transition-all hover:scale-110 sm:h-14 sm:w-14 ${
