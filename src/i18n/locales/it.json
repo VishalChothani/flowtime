@@ -33,6 +33,14 @@
     "music": "Musica",
     "edit": "Modifica"
   },
+  "music": {
+    "title": "Suoni ambientali",
+    "ocean": "Onde dell'oceano",
+    "rain": "Pioggia",
+    "white": "Rumore bianco",
+    "stop": "Ferma",
+    "playing": "In riproduzione"
+  },
   "theme": {
     "title": "Tema",
     "light": "Chiaro",

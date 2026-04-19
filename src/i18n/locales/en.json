@@ -33,6 +33,14 @@
     "music": "Music",
     "edit": "Edit"
   },
+  "music": {
+    "title": "Ambient Sounds",
+    "ocean": "Ocean Waves",
+    "rain": "Rain",
+    "white": "White Noise",
+    "stop": "Stop",
+    "playing": "Playing"
+  },
   "theme": {
     "title": "Theme",
     "light": "Light",
