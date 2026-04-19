@@ -22,6 +22,18 @@ export default defineConfig({
   },
   test: {
     projects: [
+      // Unit tests with jsdom
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          include: ['src/**/*.test.{ts,tsx}'],
+          setupFiles: ['./src/test/setup.ts'],
+          globals: true,
+        },
+      },
+      // Storybook interaction tests
       {
         extends: true,
         plugins: [
