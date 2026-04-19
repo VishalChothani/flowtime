@@ -79,7 +79,7 @@ export function Timer() {
                 value={String(minutes).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
+                className="w-36 rounded-xl border-2 border-white/30 bg-white/10 px-4 py-4 text-center font-mono text-7xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-52 sm:text-8xl"
                 aria-label={t('timer.minutes')}
               />
               <span
@@ -100,7 +100,7 @@ export function Timer() {
                 value={String(seconds).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
+                className="w-36 rounded-xl border-2 border-white/30 bg-white/10 px-4 py-4 text-center font-mono text-7xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-52 sm:text-8xl"
                 aria-label={t('timer.seconds')}
               />
             </div>
