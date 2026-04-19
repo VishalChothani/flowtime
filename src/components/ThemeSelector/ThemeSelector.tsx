@@ -1,13 +1,14 @@
 import { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useThemeStore, type ThemeMode } from '../../store/useThemeStore';
+import { useThemeStore } from '../../store/useThemeStore';
+import { ThemeMode } from '../../constants';
 
-const THEME_OPTIONS: ThemeMode[] = ['light', 'dark', 'gradient'];
+const THEME_OPTIONS: ThemeMode[] = [ThemeMode.Light, ThemeMode.Dark, ThemeMode.Gradient];
 
 const THEME_ICONS: Record<ThemeMode, string> = {
-  light: '☀️',
-  dark: '🌙',
-  gradient: '🎨',
+  [ThemeMode.Light]: '☀️',
+  [ThemeMode.Dark]: '🌙',
+  [ThemeMode.Gradient]: '🎨',
 };
 
 interface ThemeSelectorProps {
@@ -48,7 +49,7 @@ export function ThemeSelector({ isOpen, onClose }: ThemeSelectorProps) {
 
   const handleSelect = (option: ThemeMode) => {
     setMode(option);
-    if (option !== 'gradient') {
+    if (option !== ThemeMode.Gradient) {
       onClose();
     }
   };
@@ -103,7 +104,7 @@ export function ThemeSelector({ isOpen, onClose }: ThemeSelectorProps) {
         ))}
       </ul>
 
-      {mode === 'gradient' && (
+      {mode === ThemeMode.Gradient && (
         <div className="border-t border-gray-200 px-4 py-2.5 dark:border-gray-700">
           <button
             onClick={shuffleGradient}

@@ -3,17 +3,18 @@ import { FloatingActions } from '../components/FloatingActions';
 import { Header } from '../components/Header';
 import { Timer } from '../components/Timer';
 import { useThemeStore } from '../store/useThemeStore';
+import { ThemeMode } from '../constants';
 
-function getThemeClasses(mode: string, gradient: string) {
+function getThemeClasses(mode: ThemeMode, gradient: string) {
   switch (mode) {
-    case 'dark':
+    case ThemeMode.Dark:
       return {
         bg: 'bg-gray-950',
         heading: 'text-white',
         subtitle: 'text-gray-300',
         quote: 'text-gray-400',
       };
-    case 'gradient':
+    case ThemeMode.Gradient:
       return {
         bg: `bg-gradient-to-br ${gradient}`,
         heading: 'text-white drop-shadow-lg',

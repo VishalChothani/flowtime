@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-
-type TimerStatus = 'idle' | 'running' | 'paused';
-
-const DEFAULT_SECONDS = 25 * 60; // 25 minutes
-const MIN_SECONDS = 10; // 00:10
-const MAX_SECONDS = 59 * 60 + 59; // 59:59
+import {
+  TimerStatus,
+  TIMER_DEFAULT_SECONDS,
+  TIMER_MIN_SECONDS,
+  TIMER_MAX_SECONDS,
+} from '../constants';
 
 interface TimerState {
   /** Total seconds set by the user */
@@ -29,20 +29,20 @@ interface TimerState {
 }
 
 export const useTimerStore = create<TimerState>((set, get) => ({
-  initialSeconds: DEFAULT_SECONDS,
-  remainingSeconds: DEFAULT_SECONDS,
-  status: 'idle',
+  initialSeconds: TIMER_DEFAULT_SECONDS,
+  remainingSeconds: TIMER_DEFAULT_SECONDS,
+  status: TimerStatus.Idle,
   intervalId: null,
 
   start: () => {
     const { status, remainingSeconds } = get();
-    if (status === 'running' || remainingSeconds <= 0) return;
+    if (status === TimerStatus.Running || remainingSeconds <= 0) return;
 
     const id = window.setInterval(() => {
       get().tick();
     }, 1000);
 
-    set({ status: 'running', intervalId: id });
+    set({ status: TimerStatus.Running, intervalId: id });
   },
 
   pause: () => {
@@ -50,7 +50,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     if (intervalId !== null) {
       clearInterval(intervalId);
     }
-    set({ status: 'paused', intervalId: null });
+    set({ status: TimerStatus.Paused, intervalId: null });
   },
 
   reset: () => {
@@ -60,16 +60,16 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     }
     set({
       remainingSeconds: initialSeconds,
-      status: 'idle',
+      status: TimerStatus.Idle,
       intervalId: null,
     });
   },
 
   setDuration: (seconds: number) => {
     const { status } = get();
-    if (status !== 'idle') return;
+    if (status !== TimerStatus.Idle) return;
 
-    const clamped = Math.max(MIN_SECONDS, Math.min(MAX_SECONDS, seconds));
+    const clamped = Math.max(TIMER_MIN_SECONDS, Math.min(TIMER_MAX_SECONDS, seconds));
     set({ initialSeconds: clamped, remainingSeconds: clamped });
   },
 
@@ -79,7 +79,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
       if (intervalId !== null) {
         clearInterval(intervalId);
       }
-      set({ remainingSeconds: 0, status: 'idle', intervalId: null });
+      set({ remainingSeconds: 0, status: TimerStatus.Idle, intervalId: null });
       return;
     }
     set({ remainingSeconds: remainingSeconds - 1 });

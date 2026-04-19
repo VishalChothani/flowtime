@@ -7,6 +7,7 @@ import {
 } from '../../store/useTimerStore';
 import { EditTimerIcon, ResetIcon } from '../icons';
 import { useThemeStore } from '../../store/useThemeStore';
+import { TimerStatus, ThemeMode } from '../../constants';
 
 export function Timer() {
   const { t } = useTranslation();
@@ -14,14 +15,14 @@ export function Timer() {
     useTimerStore();
   const { mode } = useThemeStore();
 
-  const isLight = mode === 'light';
+  const isLight = mode === ThemeMode.Light;
   const [isEditing, setIsEditing] = useState(false);
   const minutesRef = useRef<HTMLInputElement>(null);
   const secondsRef = useRef<HTMLInputElement>(null);
 
-  const isIdle = status === 'idle';
-  const isRunning = status === 'running';
-  const isPaused = status === 'paused';
+  const isIdle = status === TimerStatus.Idle;
+  const isRunning = status === TimerStatus.Running;
+  const isPaused = status === TimerStatus.Paused;
   const isFinished = isIdle && remainingSeconds === 0;
 
   const minutes = Math.floor(remainingSeconds / 60);
