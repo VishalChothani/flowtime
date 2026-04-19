@@ -181,7 +181,7 @@ export function Timer() {
           <button
             onClick={reset}
             aria-label={t('timer.resetCountdown')}
-            className="cursor-pointer rounded-full bg-black/20 p-3 text-white shadow-md backdrop-blur-sm transition-all hover:bg-black/30 hover:scale-110"
+            className="cursor-pointer rounded-2xl bg-gray-800/90 p-3 text-gray-300 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90"
           >
             <ResetIcon className="h-7 w-7" />
           </button>
@@ -193,14 +193,14 @@ export function Timer() {
             <button
               onClick={() => reset()}
               aria-label={t('timer.resetCountdown')}
-              className="cursor-pointer rounded-full bg-black/20 p-3 text-white shadow-md backdrop-blur-sm transition-all hover:bg-black/30 hover:scale-110"
+              className="cursor-pointer rounded-2xl bg-gray-800/90 p-3 text-gray-300 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90"
             >
               <ResetIcon className="h-7 w-7" />
             </button>
             <button
               onClick={handleEditClick}
               aria-label={t('timer.setCountdownDuration')}
-              className="cursor-pointer rounded-full bg-black/20 p-3 text-white shadow-md backdrop-blur-sm transition-all hover:bg-black/30 hover:scale-110"
+              className="cursor-pointer rounded-2xl bg-gray-800/90 p-3 text-gray-300 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-gray-700/90"
             >
               <EditTimerIcon className="h-7 w-7" />
             </button>
