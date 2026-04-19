@@ -15,7 +15,7 @@ export function Header() {
   return (
     <header
       role="banner"
-      className="fixed top-0 right-0 left-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/80"
+      className="fixed top-0 right-0 left-0 z-50"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" aria-label="flowtime — Go to homepage">
