@@ -47,8 +47,11 @@ export function Timer() {
     setTimeout(() => minutesRef.current?.focus(), 50);
   };
 
-  const handleEditDone = () => {
-    setIsEditing(false);
+  const handleFieldsetBlur = (e: React.FocusEvent<HTMLFieldSetElement>) => {
+    // Only exit edit mode if focus moves outside the fieldset
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      setIsEditing(false);
+    }
   };
 
   return (
@@ -59,7 +62,7 @@ export function Timer() {
       {/* Timer Display */}
       <div className="mb-8 text-center">
         {isIdle && isEditing ? (
-          <fieldset className="border-none p-0">
+          <fieldset className="border-none p-0" onBlur={handleFieldsetBlur}>
             <legend className="sr-only">
               {t('timer.setCountdownDuration')}
             </legend>
@@ -76,7 +79,6 @@ export function Timer() {
                 value={String(minutes).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                onBlur={handleEditDone}
                 className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
                 aria-label={t('timer.minutes')}
               />
@@ -98,7 +100,6 @@ export function Timer() {
                 value={String(seconds).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                onBlur={handleEditDone}
                 className="w-32 rounded-xl border-2 border-white/30 bg-white/10 p-2 text-center font-mono text-8xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-44 sm:text-9xl"
                 aria-label={t('timer.seconds')}
               />
