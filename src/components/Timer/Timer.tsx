@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   useTimerStore,
   formatTime,
@@ -6,6 +7,7 @@ import {
 } from '../../store/useTimerStore';
 
 export function Timer() {
+  const { t } = useTranslation();
   const { remainingSeconds, status, start, pause, reset, setDuration } =
     useTimerStore();
 
@@ -21,12 +23,12 @@ export function Timer() {
   const seconds = remainingSeconds % 60;
 
   const statusLabel = isRunning
-    ? 'Focus time...'
+    ? t('timer.focusTime')
     : isPaused
-      ? 'Paused'
+      ? t('timer.paused')
       : isFinished
-        ? "Time's up! 🎉"
-        : 'Set your timer';
+        ? t('timer.timesUp')
+        : t('timer.setYourTimer');
 
   const handleTimeChange = () => {
     if (!isIdle) return;
@@ -44,7 +46,7 @@ export function Timer() {
 
   return (
     <section
-      aria-label="Countdown timer"
+      aria-label={t('timer.countdownTimer')}
       className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-lg sm:p-8 dark:border-gray-700 dark:bg-gray-800"
     >
       {/* Timer Display */}
@@ -58,10 +60,12 @@ export function Timer() {
 
         {isIdle ? (
           <fieldset className="border-none p-0">
-            <legend className="sr-only">Set countdown duration</legend>
+            <legend className="sr-only">
+              {t('timer.setCountdownDuration')}
+            </legend>
             <div className="flex items-center justify-center gap-2">
               <label htmlFor="timer-minutes" className="sr-only">
-                Minutes
+                {t('timer.minutes')}
               </label>
               <input
                 id="timer-minutes"
@@ -73,7 +77,7 @@ export function Timer() {
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
                 className="w-24 rounded-lg border border-gray-300 bg-gray-50 p-3 text-center font-mono text-5xl font-bold text-indigo-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-6xl dark:border-gray-600 dark:bg-gray-700 dark:text-indigo-400"
-                aria-label="Minutes"
+                aria-label={t('timer.minutes')}
               />
               <span
                 className="text-5xl font-bold text-gray-400 sm:text-6xl dark:text-gray-500"
@@ -82,7 +86,7 @@ export function Timer() {
                 :
               </span>
               <label htmlFor="timer-seconds" className="sr-only">
-                Seconds
+                {t('timer.seconds')}
               </label>
               <input
                 id="timer-seconds"
@@ -94,7 +98,7 @@ export function Timer() {
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
                 className="w-24 rounded-lg border border-gray-300 bg-gray-50 p-3 text-center font-mono text-5xl font-bold text-indigo-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-6xl dark:border-gray-600 dark:bg-gray-700 dark:text-indigo-400"
-                aria-label="Seconds"
+                aria-label={t('timer.seconds')}
               />
             </div>
           </fieldset>
@@ -102,7 +106,9 @@ export function Timer() {
           <output
             aria-live="polite"
             aria-atomic="true"
-            aria-label={`Time remaining: ${formatTime(remainingSeconds)}`}
+            aria-label={t('timer.timeRemaining', {
+              time: formatTime(remainingSeconds),
+            })}
             className="block font-mono text-6xl font-bold text-indigo-600 sm:text-7xl dark:text-indigo-400"
           >
             <time dateTime={`PT${minutes}M${seconds}S`}>
@@ -112,20 +118,20 @@ export function Timer() {
         )}
 
         <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
-          {isIdle ? 'Min 00:10 · Max 59:59' : '\u00A0'}
+          {isIdle ? t('timer.minMax') : '\u00A0'}
         </p>
       </div>
 
       {/* Controls */}
-      <nav aria-label="Timer controls" className="flex gap-3">
+      <nav aria-label={t('timer.timerControls')} className="flex gap-3">
         {isIdle && (
           <button
             onClick={start}
             disabled={remainingSeconds < 10}
-            aria-label="Start countdown"
+            aria-label={t('timer.startCountdown')}
             className="flex-1 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Start
+            {t('timer.start')}
           </button>
         )}
 
@@ -133,17 +139,17 @@ export function Timer() {
           <>
             <button
               onClick={pause}
-              aria-label="Pause countdown"
+              aria-label={t('timer.pauseCountdown')}
               className="flex-1 cursor-pointer rounded-lg bg-amber-500 px-4 py-2.5 font-medium text-white transition-colors hover:bg-amber-600"
             >
-              Pause
+              {t('timer.pause')}
             </button>
             <button
               onClick={reset}
-              aria-label="Reset countdown"
+              aria-label={t('timer.resetCountdown')}
               className="flex-1 cursor-pointer rounded-lg bg-gray-200 px-4 py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             >
-              Reset
+              {t('timer.reset')}
             </button>
           </>
         )}
@@ -152,17 +158,17 @@ export function Timer() {
           <>
             <button
               onClick={start}
-              aria-label="Resume countdown"
+              aria-label={t('timer.resumeCountdown')}
               className="flex-1 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-indigo-700"
             >
-              Resume
+              {t('timer.resume')}
             </button>
             <button
               onClick={reset}
-              aria-label="Reset countdown"
+              aria-label={t('timer.resetCountdown')}
               className="flex-1 cursor-pointer rounded-lg bg-gray-200 px-4 py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             >
-              Reset
+              {t('timer.reset')}
             </button>
           </>
         )}

@@ -1,0 +1,53 @@
+{
+  "header": {
+    "appName": "flowtime"
+  },
+  "home": {
+    "title": "Mantente en el flujo",
+    "subtitle": "Configura tu temporizador y ponte a trabajar"
+  },
+  "timer": {
+    "setYourTimer": "Configura tu temporizador",
+    "focusTime": "Tiempo de enfoque...",
+    "paused": "En pausa",
+    "timesUp": "¡Se acabó el tiempo! 🎉",
+    "minMax": "Mín 00:10 · Máx 59:59",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "resume": "Reanudar",
+    "reset": "Reiniciar",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "setCountdownDuration": "Establecer duración",
+    "countdownTimer": "Temporizador",
+    "timerControls": "Controles del temporizador",
+    "startCountdown": "Iniciar cuenta regresiva",
+    "pauseCountdown": "Pausar cuenta regresiva",
+    "resumeCountdown": "Reanudar cuenta regresiva",
+    "resetCountdown": "Reiniciar cuenta regresiva",
+    "timeRemaining": "Tiempo restante: {{time}}"
+  },
+  "actions": {
+    "quickActions": "Acciones rápidas",
+    "theme": "Tema",
+    "music": "Música",
+    "edit": "Editar"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "switchLanguage": "Cambiar idioma"
+  },
+  "quotes": [
+    "El secreto de avanzar es comenzar.",
+    "Enfócate en ser productivo, no en estar ocupado.",
+    "Haz lo que puedas, con lo que tengas, donde estés.",
+    "Pequeñas mejoras diarias llevan a resultados asombrosos.",
+    "La acción es la clave fundamental de todo éxito.",
+    "No mires el reloj; haz lo que él hace: sigue adelante.",
+    "El mejor momento para empezar fue ayer. El siguiente mejor momento es ahora.",
+    "La productividad nunca es un accidente. Es el resultado del compromiso.",
+    "Tu futuro se crea con lo que haces hoy, no mañana.",
+    "Siempre parece imposible hasta que se logra."
+  ]
+}

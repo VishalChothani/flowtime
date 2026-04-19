@@ -1,0 +1,53 @@
+{
+  "header": {
+    "appName": "flowtime"
+  },
+  "home": {
+    "title": "Stay in the flow",
+    "subtitle": "Set your focus timer and get to work"
+  },
+  "timer": {
+    "setYourTimer": "Set your timer",
+    "focusTime": "Focus time...",
+    "paused": "Paused",
+    "timesUp": "Time's up! 🎉",
+    "minMax": "Min 00:10 · Max 59:59",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "reset": "Reset",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "setCountdownDuration": "Set countdown duration",
+    "countdownTimer": "Countdown timer",
+    "timerControls": "Timer controls",
+    "startCountdown": "Start countdown",
+    "pauseCountdown": "Pause countdown",
+    "resumeCountdown": "Resume countdown",
+    "resetCountdown": "Reset countdown",
+    "timeRemaining": "Time remaining: {{time}}"
+  },
+  "actions": {
+    "quickActions": "Quick actions",
+    "theme": "Theme",
+    "music": "Music",
+    "edit": "Edit"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "switchLanguage": "Switch language"
+  },
+  "quotes": [
+    "The secret of getting ahead is getting started.",
+    "Focus on being productive instead of busy.",
+    "Do what you can, with what you have, where you are.",
+    "Small daily improvements lead to stunning results.",
+    "Action is the foundational key to all success.",
+    "Don't watch the clock; do what it does — keep going.",
+    "The best time to start was yesterday. The next best time is now.",
+    "Productivity is never an accident. It is the result of commitment.",
+    "Your future is created by what you do today, not tomorrow.",
+    "It always seems impossible until it is done."
+  ]
+}
