@@ -1,3 +1,4 @@
+import { FloatingActions } from '../components/FloatingActions';
 import { Header } from '../components/Header';
 import { Timer } from '../components/Timer';
 
@@ -18,6 +19,8 @@ export function Home() {
           <Timer />
         </article>
       </main>
+
+      <FloatingActions />
     </div>
   );
 }
