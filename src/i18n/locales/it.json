@@ -1,0 +1,54 @@
+{
+  "header": {
+    "appName": "flowtime"
+  },
+  "home": {
+    "title": "Resta nel flusso",
+    "subtitle": "Imposta il tuo timer e mettiti al lavoro"
+  },
+  "timer": {
+    "setYourTimer": "Imposta il timer",
+    "focusTime": "Tempo di concentrazione...",
+    "paused": "In pausa",
+    "timesUp": "Tempo scaduto! 🎉",
+    "minMax": "Min 00:10 · Max 59:59",
+    "start": "Avvia",
+    "pause": "Pausa",
+    "resume": "Riprendi",
+    "reset": "Reimposta",
+    "minutes": "Minuti",
+    "seconds": "Secondi",
+    "setCountdownDuration": "Imposta la durata",
+    "countdownTimer": "Timer conto alla rovescia",
+    "timerControls": "Controlli del timer",
+    "startCountdown": "Avvia il conto alla rovescia",
+    "pauseCountdown": "Metti in pausa il conto alla rovescia",
+    "resumeCountdown": "Riprendi il conto alla rovescia",
+    "resetCountdown": "Reimposta il conto alla rovescia",
+    "timeRemaining": "Tempo rimanente: {{time}}"
+  },
+  "actions": {
+    "quickActions": "Azioni rapide",
+    "theme": "Tema",
+    "music": "Musica",
+    "edit": "Modifica"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "switchLanguage": "Cambia lingua"
+  },
+  "quotes": [
+    "Il segreto per andare avanti è iniziare.",
+    "Concentrati sull'essere produttivo, non occupato.",
+    "Fai quello che puoi, con quello che hai, dove sei.",
+    "Piccoli miglioramenti quotidiani portano a risultati straordinari.",
+    "L'azione è la chiave fondamentale di ogni successo.",
+    "Non guardare l'orologio; fai come lui: vai avanti.",
+    "Il momento migliore per iniziare era ieri. Il prossimo è adesso.",
+    "La produttività non è mai un caso. È il risultato dell'impegno.",
+    "Il tuo futuro si crea con quello che fai oggi, non domani.",
+    "Sembra sempre impossibile finché non viene fatto."
+  ]
+}

@@ -1,20 +1,16 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LogoIcon } from '../icons';
+import { LanguageSelector } from '../LanguageSelector';
 
 function getRandomQuote(quotes: string[]) {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
 export function Header() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const quotes = t('quotes', { returnObjects: true }) as string[];
   const quote = useMemo(() => getRandomQuote(quotes), [quotes]);
-
-  const toggleLanguage = () => {
-    const nextLang = i18n.language === 'en' ? 'es' : 'en';
-    i18n.changeLanguage(nextLang);
-  };
 
   return (
     <header
@@ -37,13 +33,7 @@ export function Header() {
             <p>&ldquo;{quote}&rdquo;</p>
           </blockquote>
 
-          <button
-            onClick={toggleLanguage}
-            aria-label={t('language.switchLanguage')}
-            className="cursor-pointer rounded-lg border border-gray-300 px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 sm:px-3 sm:py-1.5 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-          >
-            {i18n.language === 'en' ? 'ES' : 'EN'}
-          </button>
+          <LanguageSelector />
         </div>
       </div>
     </header>
