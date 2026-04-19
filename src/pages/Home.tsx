@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { Header } from '../components/Header';
 import { Timer } from '../components/Timer';
 
@@ -7,7 +8,7 @@ export function Home() {
       <Header />
 
       <main className="flex flex-1 flex-col items-center justify-center px-4 pt-16">
-        <div className="w-full text-center">
+        <article className="w-full text-center">
           <h2 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
             Stay in the flow
           </h2>
@@ -17,15 +18,15 @@ export function Home() {
 
           <Timer />
 
-          <div className="mt-8 flex justify-center gap-4">
-            <a
-              href="/about"
+          <nav aria-label="Page navigation" className="mt-8">
+            <Link
+              to="/about"
               className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
             >
               About →
-            </a>
-          </div>
-        </div>
+            </Link>
+          </nav>
+        </article>
       </main>
     </div>
   );
