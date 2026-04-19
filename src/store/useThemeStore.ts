@@ -3,7 +3,6 @@ import { create } from 'zustand';
 export type ThemeMode = 'light' | 'dark' | 'gradient';
 
 const GRADIENTS = [
-  'from-indigo-500 via-purple-500 to-pink-500',
   'from-emerald-400 via-cyan-500 to-blue-600',
   'from-rose-400 via-fuchsia-500 to-indigo-500',
   'from-amber-400 via-orange-500 to-red-500',
