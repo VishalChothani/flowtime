@@ -115,7 +115,7 @@ export function Timer() {
             aria-label={t('timer.timeRemaining', {
               time: formatTime(remainingSeconds),
             })}
-            className="block font-mono text-[10rem] leading-none font-extrabold text-white drop-shadow-lg sm:text-[14rem]"
+            className="block font-mono text-[7rem] leading-none font-extrabold text-white drop-shadow-lg sm:text-[10rem] lg:text-[14rem]"
           >
             <time dateTime={`PT${minutes}M${seconds}S`}>
               {formatTime(remainingSeconds)}
