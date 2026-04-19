@@ -4,7 +4,7 @@
 
 **Flowtime** — a polished, accessible focus timer web app inspired by the Flowtime Technique. I chose **Problem 3: Clone and Improve** — rebuilding the core experience of Pomodoro/focus timer apps, then making it meaningfully better.
 
-**Live URL:** https://flowtime-tau.vercel.app
+**Live URL:** https://flowtime-two.vercel.app
 
 ---
 

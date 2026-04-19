@@ -2,7 +2,7 @@
 
 A beautiful, keyboard-first focus timer built with React 19. Editable durations, ambient sounds, quick notes, three theme modes, and full i18n support.
 
-**Live:** [flowtime-tau.vercel.app](https://flowtime-tau.vercel.app)
+**Live:** [flowtime-two.vercel.app](https://flowtime-two.vercel.app)
 
 ---
 
