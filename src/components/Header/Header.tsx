@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LogoIcon } from '../icons';
 
 function getRandomQuote(quotes: string[]) {
   return quotes[Math.floor(Math.random() * quotes.length)];
@@ -23,37 +24,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" aria-label="flowtime — Go to homepage">
           <h1>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 160 32"
-              className="h-7 w-auto sm:h-8"
-              aria-hidden="true"
-              role="img"
-            >
-              <defs>
-                <linearGradient
-                  id="logo-gradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor="#6366f1" />
-                  <stop offset="100%" stopColor="#a855f7" />
-                </linearGradient>
-              </defs>
-              <text
-                x="0"
-                y="24"
-                fontFamily="ui-sans-serif, system-ui, -apple-system, sans-serif"
-                fontSize="24"
-                fontWeight="700"
-                letterSpacing="-0.5"
-                fill="url(#logo-gradient)"
-              >
-                flowtime
-              </text>
-            </svg>
+            <LogoIcon className="h-7 w-auto sm:h-8" />
             <span className="sr-only">flowtime</span>
           </h1>
         </a>
