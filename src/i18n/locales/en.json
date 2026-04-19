@@ -33,6 +33,12 @@
     "music": "Music",
     "edit": "Edit"
   },
+  "notes": {
+    "title": "Quick Notes",
+    "placeholder": "Write your notes here...",
+    "saved": "Saved",
+    "close": "Close notes"
+  },
   "language": {
     "en": "English",
     "es": "Español",

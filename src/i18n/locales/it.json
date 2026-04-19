@@ -33,6 +33,12 @@
     "music": "Musica",
     "edit": "Modifica"
   },
+  "notes": {
+    "title": "Note rapide",
+    "placeholder": "Scrivi le tue note qui...",
+    "saved": "Salvato",
+    "close": "Chiudi note"
+  },
   "language": {
     "en": "English",
     "es": "Español",
