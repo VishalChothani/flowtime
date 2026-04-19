@@ -6,12 +6,15 @@ import {
   parseTime,
 } from '../../store/useTimerStore';
 import { EditTimerIcon, ResetIcon } from '../icons';
+import { useThemeStore } from '../../store/useThemeStore';
 
 export function Timer() {
   const { t } = useTranslation();
   const { remainingSeconds, status, start, pause, reset, setDuration } =
     useTimerStore();
+  const { mode } = useThemeStore();
 
+  const isLight = mode === 'light';
   const [isEditing, setIsEditing] = useState(false);
   const minutesRef = useRef<HTMLInputElement>(null);
   const secondsRef = useRef<HTMLInputElement>(null);
@@ -79,11 +82,15 @@ export function Timer() {
                 value={String(minutes).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-36 rounded-xl border-2 border-white/30 bg-white/10 px-4 py-4 text-center font-mono text-7xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-52 sm:text-8xl"
+                className={`w-36 rounded-xl border-2 px-4 py-4 text-center font-mono text-7xl font-extrabold backdrop-blur-sm focus:ring-2 focus:outline-none sm:w-52 sm:text-8xl ${
+                  isLight
+                    ? 'border-gray-400/40 bg-black/5 text-gray-900 focus:border-gray-500 focus:ring-gray-400/30'
+                    : 'border-white/30 bg-white/10 text-white focus:border-white/60 focus:ring-white/30'
+                }`}
                 aria-label={t('timer.minutes')}
               />
               <span
-                className="text-8xl font-extrabold text-white/60 sm:text-9xl"
+                className={`text-8xl font-extrabold sm:text-9xl ${isLight ? 'text-gray-400' : 'text-white/60'}`}
                 aria-hidden="true"
               >
                 :
@@ -100,11 +107,15 @@ export function Timer() {
                 value={String(seconds).padStart(2, '0')}
                 onChange={handleTimeChange}
                 onKeyDown={handleKeyDown}
-                className="w-36 rounded-xl border-2 border-white/30 bg-white/10 px-4 py-4 text-center font-mono text-7xl font-extrabold text-white backdrop-blur-sm focus:border-white/60 focus:ring-2 focus:ring-white/30 focus:outline-none sm:w-52 sm:text-8xl"
+                className={`w-36 rounded-xl border-2 px-4 py-4 text-center font-mono text-7xl font-extrabold backdrop-blur-sm focus:ring-2 focus:outline-none sm:w-52 sm:text-8xl ${
+                  isLight
+                    ? 'border-gray-400/40 bg-black/5 text-gray-900 focus:border-gray-500 focus:ring-gray-400/30'
+                    : 'border-white/30 bg-white/10 text-white focus:border-white/60 focus:ring-white/30'
+                }`}
                 aria-label={t('timer.seconds')}
               />
             </div>
-            <p className="mt-3 text-sm text-white/50">
+            <p className={`mt-3 text-sm ${isLight ? 'text-gray-500' : 'text-white/50'}`}>
               {t('timer.minMax')}
             </p>
           </fieldset>
@@ -115,7 +126,9 @@ export function Timer() {
             aria-label={t('timer.timeRemaining', {
               time: formatTime(remainingSeconds),
             })}
-            className="block font-mono text-[7rem] leading-none font-extrabold text-white drop-shadow-lg sm:text-[10rem] lg:text-[14rem]"
+            className={`block font-mono text-[7rem] leading-none font-extrabold drop-shadow-lg sm:text-[10rem] lg:text-[14rem] ${
+              isLight ? 'text-gray-900' : 'text-white'
+            }`}
           >
             <time dateTime={`PT${minutes}M${seconds}S`}>
               {formatTime(remainingSeconds)}
@@ -126,7 +139,7 @@ export function Timer() {
         {/* Status label */}
         {!isEditing && (
           <p
-            className="mt-2 text-lg font-medium text-white/60"
+            className={`mt-2 text-lg font-medium ${isLight ? 'text-gray-500' : 'text-white/60'}`}
             aria-live="polite"
           >
             {isRunning
