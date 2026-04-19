@@ -54,6 +54,17 @@
     "saved": "Salvato",
     "close": "Chiudi note"
   },
+  "shortcuts": {
+    "title": "Scorciatoie da tastiera",
+    "startPause": "Avvia / Pausa timer",
+    "reset": "Reimposta timer",
+    "edit": "Modifica timer",
+    "theme": "Apri selettore tema",
+    "music": "Apri selettore musica",
+    "notes": "Apri note",
+    "help": "Mostra scorciatoie",
+    "close": "Chiudi pannello"
+  },
   "language": {
     "en": "English",
     "es": "Español",

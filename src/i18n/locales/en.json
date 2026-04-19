@@ -54,6 +54,17 @@
     "saved": "Saved",
     "close": "Close notes"
   },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "startPause": "Start / Pause timer",
+    "reset": "Reset timer",
+    "edit": "Edit timer",
+    "theme": "Open theme selector",
+    "music": "Open music selector",
+    "notes": "Open notes",
+    "help": "Show shortcuts",
+    "close": "Close panel"
+  },
   "language": {
     "en": "English",
     "es": "Español",

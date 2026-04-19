@@ -1,4 +1,5 @@
 export { EditTimerIcon } from './EditTimerIcon';
+export { KeyboardIcon } from './KeyboardIcon';
 export { LogoIcon } from './LogoIcon';
 export { MusicIcon } from './MusicIcon';
 export { PaletteIcon } from './PaletteIcon';

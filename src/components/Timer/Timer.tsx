@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useTimerStore,
@@ -49,6 +49,13 @@ export function Timer() {
     setIsEditing(true);
     setTimeout(() => minutesRef.current?.focus(), 50);
   };
+
+  // Listen for keyboard shortcut edit event
+  useEffect(() => {
+    const handleEditEvent = () => handleEditClick();
+    window.addEventListener('flowtime:edit-timer', handleEditEvent);
+    return () => window.removeEventListener('flowtime:edit-timer', handleEditEvent);
+  });
 
   const handleFieldsetBlur = (e: React.FocusEvent<HTMLFieldSetElement>) => {
     // Only exit edit mode if focus moves outside the fieldset

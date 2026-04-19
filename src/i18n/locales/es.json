@@ -54,6 +54,17 @@
     "saved": "Guardado",
     "close": "Cerrar notas"
   },
+  "shortcuts": {
+    "title": "Atajos de teclado",
+    "startPause": "Iniciar / Pausar temporizador",
+    "reset": "Reiniciar temporizador",
+    "edit": "Editar temporizador",
+    "theme": "Abrir selector de tema",
+    "music": "Abrir selector de música",
+    "notes": "Abrir notas",
+    "help": "Mostrar atajos",
+    "close": "Cerrar panel"
+  },
   "language": {
     "en": "English",
     "es": "Español",
