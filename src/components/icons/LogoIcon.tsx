@@ -4,7 +4,7 @@ export function LogoIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 160 32"
+      viewBox="0 0 280 56"
       aria-hidden="true"
       role="img"
       {...props}
@@ -23,11 +23,11 @@ export function LogoIcon(props: SVGProps<SVGSVGElement>) {
       </defs>
       <text
         x="0"
-        y="24"
+        y="42"
         fontFamily="ui-sans-serif, system-ui, -apple-system, sans-serif"
-        fontSize="24"
+        fontSize="42"
         fontWeight="700"
-        letterSpacing="-0.5"
+        letterSpacing="-1"
         fill="url(#logo-gradient)"
       >
         flowtime

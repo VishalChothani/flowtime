@@ -17,10 +17,10 @@ export function Header() {
       role="banner"
       className="fixed top-0 right-0 left-0 z-50"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
         <a href="/" aria-label="flowtime — Go to homepage">
           <h1>
-            <LogoIcon className="h-7 w-auto sm:h-8" />
+            <LogoIcon className="h-10 w-auto sm:h-12" />
             <span className="sr-only">flowtime</span>
           </h1>
         </a>
